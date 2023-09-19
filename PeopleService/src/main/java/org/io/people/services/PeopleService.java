@@ -4,6 +4,7 @@ import org.io.people.entities.Person;
 import org.io.people.repos.PeopleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 
 public class PeopleService {
@@ -16,5 +17,9 @@ public class PeopleService {
             return person.get();
         }
         return null;//bad
+    }
+    public List<Person> getPersonByFullNameIgnoreCase(String fullName){
+        List<Person> people = peopleRepo.findByFullNameContainingIgnoreCase(fullName);
+        return people;
     }
 }

@@ -9,8 +9,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "t_people_id")
     private Person person;
     @Column(name = "addr_type")
     private String type;

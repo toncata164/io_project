@@ -9,8 +9,8 @@ public class Mail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "t_people_id")
     private Person person;
     @Column(name = "email_type")
     private String type;
