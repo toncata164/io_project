@@ -9,7 +9,7 @@ public class Mail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "t_people_id")
     private Person person;
     @Column(name = "email_type")
@@ -55,5 +55,6 @@ public class Mail {
 
     public void setPerson(Person person) {
         this.person = person;
+        this.person.getEmail().forEach(m -> m.setPerson(this.person));
     }
 }

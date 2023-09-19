@@ -9,7 +9,7 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "t_people_id")
     private Person person;
     @Column(name = "addr_type")
@@ -55,5 +55,6 @@ public class Address {
 
     public void setPerson(Person person) {
         this.person = person;
+        this.person.getAddress().forEach(a -> a.setPerson(this.person));
     }
 }

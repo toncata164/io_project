@@ -18,6 +18,9 @@ public class PeopleService {
         }
         return null;//bad
     }
+    public Person addPerson(Person person){
+        return peopleRepo.save(person);
+    }
     public List<Person> getPersonByFullNameIgnoreCase(String fullName){
         List<Person> people = peopleRepo.findByFullNameContainingIgnoreCase(fullName);
         return people;
