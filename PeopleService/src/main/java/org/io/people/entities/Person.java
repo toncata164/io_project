@@ -2,6 +2,8 @@ package org.io.people.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table (name = "t_people")
 public class Person {
@@ -11,13 +13,13 @@ public class Person {
     @Column(name = "full_name")
     private String fullName;
 
-    @OneToOne(mappedBy = "person")
-    private Address address;
+    @OneToMany(mappedBy = "person")
+    private List<Address> address;
 
-    @OneToOne(mappedBy = "person")
-    private Mail email;
+    @OneToMany(mappedBy = "person")
+    private List<Mail> email;
 
-    public Person(int id, String fullName, Address address, Mail email){
+    public Person(int id, String fullName, List<Address> address, List<Mail> email){
         this.id = id;
         this.fullName = fullName;
         this.address = address;
@@ -36,19 +38,19 @@ public class Person {
         return fullName;
     }
 
-    public Address getAddress() {
+    public List<Address> getAddress() {
         return address;
     }
 
-    public Mail getEmail() {
+    public List<Mail> getEmail() {
         return email;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(List<Address> address) {
         this.address = address;
     }
 
-    public void setEmail(Mail email) {
+    public void setEmail(List<Mail> email) {
         this.email = email;
     }
 
