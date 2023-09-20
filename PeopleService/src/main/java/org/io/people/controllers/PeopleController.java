@@ -1,7 +1,5 @@
 package org.io.people.controllers;
 
-import org.io.people.entities.Address;
-import org.io.people.entities.Mail;
 import org.io.people.entities.Person;
 import org.io.people.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +19,25 @@ public class PeopleController {
         return ResponseEntity.status(HttpStatus.OK).body(peopleService.getPersonById(id));
     }
 
+    @DeleteMapping("people/remove/")
+    public ResponseEntity<Void> deletePersonById(@RequestBody Person person){
+        peopleService.deletePerson(person);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
     @PostMapping("people/add")
     public ResponseEntity<Void> addPerson(@RequestBody Person person){
         Person added = peopleService.addPerson(person);
         if(added != null){
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PutMapping("people/update")
+    public ResponseEntity<Void> updatePerson(@RequestBody Person person){
+        Person updated = peopleService.updatePerson(person);
+        if(updated != null){
             return ResponseEntity.status(HttpStatus.OK).build();
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

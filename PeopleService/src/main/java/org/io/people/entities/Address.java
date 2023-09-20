@@ -55,6 +55,5 @@ public class Address {
 
     public void setPerson(Person person) {
         this.person = person;
-        this.person.getAddress().forEach(a -> a.setPerson(this.person));
     }
 }
