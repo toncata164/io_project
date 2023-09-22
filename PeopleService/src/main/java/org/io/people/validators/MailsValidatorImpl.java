@@ -13,12 +13,12 @@ public class MailsValidatorImpl implements Validator<Mail> {
             return true;
         }
         if(mail.getType() == null){
-            return false;
+            throw new RuntimeException("E-mail type must be not null!");
         }
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         Matcher matcher = pattern.matcher(mail.getEmail());
         if(!matcher.matches()){
-            return false;
+            throw new RuntimeException("E-mail "+mail.getEmail()+" is not valid!");
         }
         return true;
     }

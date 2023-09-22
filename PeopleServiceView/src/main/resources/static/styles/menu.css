@@ -1,0 +1,19 @@
+#menu{
+    width: 20%;
+    height:500px;
+    float: left;
+    background-color:yellow;
+}
+#menu .btn{
+    margin-top:2px;
+    margin-left:10px;
+    margin-bottom:2px;
+}
+#menu .first_control{
+    margin-top: 10px;
+}
+#menu button{
+    width: 100px;
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,51 @@
+.person{
+    padding: 5px;
+    border: 1px solid black;
+    margin: 2px;
+    display: block;
+    visibility: visible;
+    font-family: Verdana;
+}
+
+.person h5{
+    font-size: 20pt;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 25px;
+    display: inline;
+}
+
+.person h6{
+    font-size: 16pt;
+    position:relative;
+    margin-top:4px;
+    margin-bottom:4px;
+    margin-left: 25px;
+}
+
+.person .btn{
+    margin-left: 10px;
+    margin-top:5px;
+    float:right;
+}
+
+#data{
+    width: 80%;
+    height:500px;
+    float: left;
+    overflow-y: scroll;
+}
+#add_person_form{
+    position:relative;
+    margin-left:10px;
+    margin-top:10px;
+}
+#add_person_form input{
+    position:relative;
+    margin-bottom:5px;
+}
+#edit_buttons{
+    position:relative;
+    height:27px;
+}
