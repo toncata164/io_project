@@ -9,8 +9,8 @@ public class Mail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "t_people_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "t_people_id", referencedColumnName = "id")
     private Person person;
     @Column(name = "email_type")
     private String type;
@@ -31,7 +31,7 @@ public class Mail {
         return id;
     }
 
-    public int getPersonId() {
+    public int getTPeopleId() {
         return person.getId();
     }
 

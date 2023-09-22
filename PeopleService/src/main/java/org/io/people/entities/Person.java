@@ -8,15 +8,21 @@ import java.util.List;
 @Table (name = "t_people")
 public class Person {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "full_name")
     private String fullName;
 
-    @OneToMany(mappedBy = "person")
+    @Column(name="pin")
+    private String pin;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="t_people_id")
     private List<Address> address;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="t_people_id")
     private List<Mail> email;
 
     public Person(int id, String fullName, List<Address> address, List<Mail> email){
@@ -60,5 +66,13 @@ public class Person {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 }
