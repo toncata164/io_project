@@ -9,7 +9,7 @@ public class AddressValidatorImpl implements Validator<Address> {
             return true;
         }
         if(address.getType() == null || address.getType().isEmpty()){
-            return false;
+            throw new RuntimeException("Address type must be not empty!");
         }
         return true;
     }

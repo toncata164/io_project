@@ -13,7 +13,7 @@ public class PersonValidatorImpl implements Validator<Person>{
 
     private boolean validateFullName(String fullName){
         if(fullName == null || fullName.isEmpty()){
-            return false;
+            throw new RuntimeException("Person name must be not empty!");
         }
         char[] symbols = fullName.toCharArray();
         int unicodeUpperA = 0x0041;
@@ -27,7 +27,7 @@ public class PersonValidatorImpl implements Validator<Person>{
                     (symbol >= unicodeLowerA && symbol <= unicodeLowerZ) ||
                     (symbol >= unicodeUpperCyrillicA && symbol <= unicodeLowerCyrillicYA) ||
                     symbol == ' ' || symbol == '-')){
-                return false;
+                throw new RuntimeException("Person name must contain latin or cyrillic letters, space, -");
             }
         }
         return true;
@@ -35,26 +35,25 @@ public class PersonValidatorImpl implements Validator<Person>{
     @Override
     public boolean validate(Person person) {
         if(person == null){
-            return false;
+            throw new RuntimeException("Person can't be null!");
         }
         if(person.getEmail() != null && !person.getEmail().isEmpty()) {
-            Boolean areMailsValid = person.getEmail().stream().reduce(Boolean.TRUE, (b, m) -> b && mailValidator.validate(m), (b, bb) -> b && bb);
-            if (!areMailsValid) {
-                return false;
-            }
+            person.getEmail().forEach(email->mailValidator.validate(email));
         }
         if(person.getAddress() != null && !person.getAddress().isEmpty()) {
-            Boolean areAddressesValid = person.getAddress().stream().reduce(Boolean.TRUE, (b, a) -> b && addressValidator.validate(a), (b, bb) -> b && bb);
-            if (!areAddressesValid) {
-                return false;
-            }
+            person.getAddress().forEach(address -> addressValidator.validate(address));
         }
         if(!validateFullName(person.getFullName())){
-            return false;
+            throw new RuntimeException("Name is invalid!");
         }
         if(person.getPin() != null &&
                 (person.getPin().length() != 10 || !person.getPin().matches("[0-9]{10}"))){
-            return false;
+            if(person.getPin().length() != 10) {
+                throw new RuntimeException("Pin must be exactly 10 digits long!");
+            }
+            else{
+                throw new RuntimeException("Pin must contain digits only!");
+            }
         }
         return true;
     }

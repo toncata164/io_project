@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/menu.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/data.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/modal.css}" />
     <title>People Service</title>
     <script type="text/javascript" th:src="@{/functions/functions.js}"></script>
+    <script type="text/javascript" th:src="@{/functions/modal.js}"></script>
+    <script type="text/javascript">
+        window.onclick = function(event) {
+          const modal = document.getElementById("myModal");
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+    </script>
 </head>
 <body th:onload="resizeView();">
-    <div id="header"><span class="header_text">People Service</span></div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal_content">
+            <span class="close" id="modal_close" onclick="closeModal();">&times;</span>
+        </div>
+        <div id="modal_data" class="modal_content">
+
+        </div>
+    </div>
+    <div id="header"><span id="header_text">People Service</span></div>
     <div id="content">
         <div id="menu">
             <div class="btn first_control"><input type="text" id="search_input"/></div>
