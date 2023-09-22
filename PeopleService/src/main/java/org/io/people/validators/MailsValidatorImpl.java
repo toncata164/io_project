@@ -2,8 +2,11 @@ package org.io.people.validators;
 
 import org.io.people.entities.Mail;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MailsValidatorImpl implements Validator<Mail> {
-    private final String EMAIL_REGEX = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$";
+    private final String EMAIL_REGEX = "^(.+)@(.+)$";
     @Override
     public boolean validate(Mail mail) {
         if(mail == null){
@@ -12,7 +15,9 @@ public class MailsValidatorImpl implements Validator<Mail> {
         if(mail.getType() == null){
             return false;
         }
-        if(!mail.getEmail().matches(EMAIL_REGEX)){
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        Matcher matcher = pattern.matcher(mail.getEmail());
+        if(!matcher.matches()){
             return false;
         }
         return true;

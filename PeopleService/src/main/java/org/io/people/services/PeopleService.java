@@ -14,6 +14,9 @@ public class PeopleService {
     @Autowired
     private Validator<Person> personValidator;
 
+    public List<Person> getPeople(){
+        return peopleRepo.findAll();
+    }
     public Person getPersonById(int id){
         Optional<Person> person = peopleRepo.findById(id);
         if(person.isPresent()){
@@ -22,8 +25,8 @@ public class PeopleService {
         return null;//bad
     }
 
-    public void deletePerson(Person person){
-        peopleRepo.delete(person);
+    public void deletePersonById(int id){
+        peopleRepo.deleteById(id);
     }
 
     public Person addPerson(Person person){

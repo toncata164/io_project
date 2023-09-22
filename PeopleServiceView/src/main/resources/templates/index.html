@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+    <title>People Service</title>
+    <script type="text/javascript" th:src="@{/functions/functions.js}"></script>
+</head>
+<body th:onload="resizeView();">
+    <div id="header"><span class="header_text">People Service</span></div>
+    <div id="content">
+        <div id="menu">
+            <div class="btn first_control"><input type="text" id="search_input"/></div>
+            <div class="btn"><button th:onclick="search();">Search</button></div>
+            <div class="btn"><button th:onclick="showAll();">Show All</button></div>
+            <div class="btn"><button th:onclick="addNewPerson();">Add New</button></div>
+            <div class="btn"><button>Delete All</button></div>
+        </div>
+        <div id="data">
+
+        </div>
+    </div>
+    <div id="footer"><div id="footer_text">Created by Anton Denev</div></div>
+</body>
+</html>
